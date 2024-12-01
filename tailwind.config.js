@@ -3,7 +3,7 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
-      'sans': ['Poppins', 'Padauk', 'sans-serif']
+      sans: ["Poppins", "Padauk", "sans-serif"],
     },
     container: {
       center: true,
@@ -17,8 +17,11 @@ export default {
     },
     extend: {
       fontFamily: {
-        montserrat: ['Montserrat', 'sans-serif']
-      }
+        montserrat: ["Montserrat", "sans-serif"],
+      },
+      colors: {
+        primary: "#5d87ff",
+      },
     },
   },
   plugins: [],

@@ -2,13 +2,13 @@ import React from 'react'
 import Header from './Header'
 import { Outlet } from 'react-router-dom'
 
-const PublicLayout = () => {
+const AuthLayout = () => {
   return (
-    <div>
+    <main>
         <Header/>
         <Outlet/>
-    </div>
+    </main>
   )
 }
 
-export default PublicLayout
+export default AuthLayout
