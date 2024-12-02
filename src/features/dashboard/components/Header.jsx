@@ -2,6 +2,7 @@ import React from "react";
 import useUserStore from "../../../stores/ussUserStore";
 import { CgMenuLeft } from "react-icons/cg";
 import useGlobalStore from "../../../stores/useGlobalStore";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const {
@@ -15,7 +16,7 @@ const Header = () => {
       <div className="px-11">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-[150px]">
-            <h1 className="text-primary font-bold text-2xl">RAYY.</h1>
+            <Link to="." className="text-primary font-bold text-2xl">RAYY.</Link>
             <button onClick={setIsActive}>
               <CgMenuLeft className="size-5 text-primary"/>
             </button>
