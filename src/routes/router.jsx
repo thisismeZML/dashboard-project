@@ -3,6 +3,7 @@ import PublicRoute from "./publicRoute";
 import PublicLayout from "../features/public/components/publicLayout";
 import AuthRoute from "./AuthRoute";
 import AuthLayout from "../features/auth/components/AuthLayout";
+import DashboardRoute from "./DashboardRoute";
 
 export const router = createBrowserRouter([
   {
@@ -12,7 +13,8 @@ export const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <AuthLayout/>,
-    children: [...AuthRoute]
-  }
+    element: <AuthLayout />,
+    children: [...AuthRoute],
+  },
+  ...DashboardRoute,
 ]);

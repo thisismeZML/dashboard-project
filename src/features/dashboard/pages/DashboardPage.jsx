@@ -2,7 +2,7 @@ import React from 'react'
 
 const DashboardPage = () => {
   return (
-    <div>DashboardPage</div>
+    <div className='mt-[100px] px-11'>DashboardPage</div>
   )
 }
 
