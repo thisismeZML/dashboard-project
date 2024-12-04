@@ -13,7 +13,7 @@ const ProductRoute = [
     element: <ProductCreatePage />,
   },
   {
-    path: "product/edit/:id",
+    path: "product/:id",
     element: <ProductEditPage />,
   },
 ];

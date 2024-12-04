@@ -1,80 +1,102 @@
 import React from "react";
-import { FaBox, FaChartLine, FaTags, FaXmark } from "react-icons/fa6";
-import { HiHome } from "react-icons/hi";
+import { FaBox, FaChartLine, FaTags } from "react-icons/fa6";
+import { HiHome, HiOutlineArrowNarrowRight } from "react-icons/hi";
 import { SlSettings } from "react-icons/sl";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import useGlobalStore from "../../../stores/useGlobalStore";
-import { GrPowerShutdown } from "react-icons/gr";
-import { removeCookie } from "react-use-cookie";
+import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 
 const Sidebar = () => {
-  const { isActive, setIsActive } = useGlobalStore();
+  const { isOpen, setIsOpen } = useGlobalStore();
 
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    removeCookie("my_token");
-    removeCookie("user");
-    navigate("/");
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
     <div
-      className={`fixed top-0 bottom-0 bg-white shadow-lg w-[300px] flex flex-col min-h-dvh p-3 px-4 transition-all duration-200 ${
-        isActive ? " translate-x-0" : " -translate-x-[300px]"
-      }`}
+      className={`fixed top-[83.8px] bottom-0 bg-white shadow-lg ${
+        isOpen ? "w-[300px]" : "w-[80px]"
+      } flex flex-col p-3 transition-all duration-200`}
     >
-      <div className="flex items-center justify-between border-b py-5">
-        <h1 className="text-primary font-bold text-2xl">MENU</h1>
-        <button onClick={setIsActive} className="bg-primary p-2 rounded-md">
-          <FaXmark className="text-white" />
+      {/* Header */}
+      <div
+        className={`flex items-center border-b py-5 ${
+          isOpen ? "justify-end" : "justify-center"
+        }`}
+      >
+        <button onClick={handleToggle} className="bg-primary p-2 rounded-md">
+          {isOpen ? (
+            <HiOutlineArrowNarrowLeft className="text-white" />
+          ) : (
+            <HiOutlineArrowNarrowRight className="text-white" />
+          )}
         </button>
       </div>
+
+      {/* Menu Items */}
       <div className="flex flex-col gap-2 mt-8">
-        <Link
-          to="."
-          className="flex items-center gap-2 hover:bg-blue-50 py-3 px-2 group transition-all duration-200"
+        <NavLink
+          to="/dashboard"
+          end
+          className={({ isActive }) =>
+            `flex items-center gap-2 hover:bg-blue-50 py-3 px-2 group transition-all duration-200 ${
+              !isOpen ? "justify-center" : ""
+            } ${isActive ? "bg-blue-100 text-primary" : ""}`
+          }
         >
-          <HiHome className=" group-hover:text-primary" />
-          <p className=" group-hover:text-primary">Dashboard</p>
-        </Link>
-        <Link
+          <HiHome />
+          <p className={`${isOpen ? "" : "hidden"}`}>Dashboard</p>
+        </NavLink>
+
+        <NavLink
           to="product"
-          className="flex items-center gap-2 hover:bg-blue-50 py-3 px-2 group transition-all duration-200"
+          className={({ isActive }) =>
+            `flex items-center gap-2 hover:bg-blue-50 py-3 px-2 group transition-all duration-200 ${
+              !isOpen ? "justify-center" : ""
+            } ${isActive ? "bg-blue-100 text-primary" : ""}`
+          }
         >
-          <FaBox className=" group-hover:text-primary" />
-          <p className=" group-hover:text-primary">Products</p>
-        </Link>
-        <Link
+          <FaBox />
+          <p className={`${isOpen ? "" : "hidden"}`}>Products</p>
+        </NavLink>
+        <NavLink
           to="sale"
-          className="flex items-center gap-2 hover:bg-blue-50 py-3 px-2 group transition-all duration-200"
+          className={({ isActive }) =>
+            `flex items-center gap-2 hover:bg-blue-50 py-3 px-2 group transition-all duration-200 ${
+              !isOpen ? "justify-center" : ""
+            } ${isActive ? "bg-blue-100 text-primary" : ""}`
+          }
         >
-          <FaChartLine className=" group-hover:text-primary" />
-          <p className=" group-hover:text-primary">Sales</p>
-        </Link>
-        <Link
+          <FaChartLine />
+          <p className={`${isOpen ? "" : "hidden"}`}>Sales</p>
+        </NavLink>
+        <NavLink
           to="voucher"
-          className="flex items-center gap-2 hover:bg-blue-50 py-3 px-2 group transition-all duration-200"
+          className={({ isActive }) =>
+            `flex items-center gap-2 hover:bg-blue-50 py-3 px-2 group transition-all duration-200 ${
+              !isOpen ? "justify-center" : ""
+            } ${isActive ? "bg-blue-100 text-primary" : ""}`
+          }
         >
-          <FaTags className=" group-hover:text-primary" />
-          <p className=" group-hover:text-primary">Vouchers</p>
-        </Link>
-        <button
-          onClick={handleLogout}
-          className="flex items-center gap-2 hover:bg-blue-50 py-3 px-2 group transition-all duration-200"
-        >
-          <GrPowerShutdown className=" group-hover:text-primary" />
-          <p className=" group-hover:text-primary">Logout</p>
-        </button>
+          <FaTags />
+          <p className={`${isOpen ? "" : "hidden"}`}>Vouchers</p>
+        </NavLink>
       </div>
+
+      {/* Footer */}
       <div className="mt-auto">
-        <Link
-          to="."
-          className="flex items-center gap-2 hover:bg-blue-50 py-3 px-2 group transition-all duration-200"
+        <NavLink
+          to="usersetting"
+          className={({ isActive }) =>
+            `flex items-center gap-2 hover:bg-blue-50 py-3 px-2 group transition-all duration-200 ${
+              !isOpen ? "justify-center" : ""
+            } ${isActive ? "bg-blue-100 text-primary" : ""}`
+          }
         >
-          <SlSettings className=" group-hover:text-primary" />
-          <p className=" group-hover:text-primary">Settings</p>
-        </Link>
+          <SlSettings />
+          <p className={`${isOpen ? "" : "hidden"}`}>Settings</p>
+        </NavLink>
       </div>
     </div>
   );

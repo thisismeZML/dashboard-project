@@ -4,6 +4,8 @@ import { Navigate, Outlet } from "react-router-dom";
 import useCookie from "react-use-cookie";
 import useUserStore from "../../../stores/ussUserStore";
 import Sidebar from "./Sidebar";
+import useGlobalStore from "../../../stores/useGlobalStore";
+import { Toaster } from "react-hot-toast";
 
 const DashboardLayout = () => {
   const [token] = useCookie("my_token");
@@ -18,11 +20,16 @@ const DashboardLayout = () => {
     return <Navigate to={"/"} />;
   }
 
+  const { isOpen } = useGlobalStore();
+
   return (
     <div>
       <Header />
-      <Sidebar/>
-      <Outlet />
+      <Sidebar />
+      <div className={`${isOpen ? "ml-[308px]" : "ml-[88px]"} transition-all duration-200`}>
+        <Outlet />
+      </div>
+      <Toaster/>
     </div>
   );
 };

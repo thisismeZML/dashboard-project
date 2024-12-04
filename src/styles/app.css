@@ -3,3 +3,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.breadcrumb li {
+    display: inline;
+    margin-right: 0.5rem;
+  }
+  
+  .breadcrumb a {
+    color: blue;
+    text-decoration: none;
+  }
+  
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  
